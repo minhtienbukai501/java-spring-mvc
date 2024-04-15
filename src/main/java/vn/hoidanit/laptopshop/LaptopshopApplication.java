@@ -9,7 +9,6 @@ import org.springframework.context.ApplicationContext;
 public class LaptopshopApplication {
 
 	public static void main(String[] args) {
-
 		// container
 		SpringApplication.run(LaptopshopApplication.class, args);
 
