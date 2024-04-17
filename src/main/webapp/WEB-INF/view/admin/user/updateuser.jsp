@@ -18,17 +18,18 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-md-6 col-12 mx-auto">
-                            <h3>Create a user</h3>
-                            <hr />
-                            <form:form action="/admin/user/create" method="post" modelAttribute="newUser">
+                            <h3>Update a user</h3>
+                            <hr>
+                            <form:form action="/admin/user/update" method="post" modelAttribute="updateUser">
+                                <div class="mb-3" style="display: none;">
+                                    <label class="form-label">Id:</label>
+                                    <form:input type="text" class="form-control" path="id" />
+                                </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email:</label>
-                                    <form:input type="email" class="form-control" path="email" />
+                                    <form:input readonly="true" type="email" class="form-control" path="email" />
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Password:</label>
-                                    <form:input type="password" class="form-control " path="passWord" />
-                                </div>
+
                                 <div class="mb-3">
                                     <label class="form-label">Phone number:</label>
                                     <form:input type="text" class="form-control" path="phone" />
@@ -42,7 +43,7 @@
                                     <form:input type="text" class="form-control" path="address" />
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-warning">Update</button>
                             </form:form>
                         </div>
 
