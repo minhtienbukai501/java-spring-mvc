@@ -10,6 +10,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -27,8 +32,40 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> oders;
 
-    private String email, passWord, fullName, address, phone;
+    public Role getRole() {
+        return role;
+    }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public List<Order> getOders() {
+        return oders;
+    }
+
+    public void setOders(List<Order> oders) {
+        this.oders = oders;
+    }
+
+    @Email
+    @NotEmpty(message = "Email cannot be empty")
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    private String email;
+
+    @Min(value = 5, message = "Password must have a minimum of 5 characters")
+    private String passWord;
+
+    @NotEmpty(message = "Name cannot be empty")
+    private String fullName;
+
+    @NotEmpty(message = "Address cannot be empty")
+    private String address;
+
+    @NotEmpty(message = "Phone cannot be empty")
+    private String phone;
+
+    @NotEmpty(message = "Avatar cannot be empty")
     private String avatar;
 
     public long getId() {
