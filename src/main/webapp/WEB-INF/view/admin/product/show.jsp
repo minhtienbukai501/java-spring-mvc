@@ -55,7 +55,23 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <c:forEach var="product" items="${listProduct}">
+                                                    <tr>
 
+                                                        <th>${product.id}</th>
+                                                        <td>${product.name}</td>
+                                                        <td>${String.format("%.0f", product.price)}</td>
+                                                        <td>${product.factory}</td>
+                                                        <td>
+                                                            <a href="/admin/product/${product.id}"
+                                                                class="btn btn-success">View</a>
+                                                            <a href="/admin/product/update/${product.id}"
+                                                                class="btn btn-warning">Update</a>
+                                                            <a href="/admin/product/delete/${product.id}"
+                                                                class="btn btn-danger">Delete</a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
 
 
 
@@ -64,7 +80,7 @@
                                         </table>
                                     </div>
                                     <div>
-                                        <c:if test="${users.size() == 0}">
+                                        <c:if test="${listProduct.size() == 0}">
                                             <p style="text-align: center;color:#ccc">Không có người dùng nào</p>
                                         </c:if>
                                     </div>

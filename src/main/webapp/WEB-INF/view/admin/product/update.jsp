@@ -20,7 +20,10 @@
                     <script>
                         $(document).ready(() => {
                             const avatarFile = $("#avatarFile");
+
+
                             avatarFile.change(function (e) {
+
                                 const imgURL = URL.createObjectURL(e.target.files[0]);
                                 $("#avatarPreview").attr("src", imgURL);
                                 $("#avatarPreview").css({ "display": "block" });
@@ -41,15 +44,19 @@
                                     <ol class="breadcrumb mb-4">
                                         <li class="breadcrumb-item active"><a href="/admin">Dashboard</a></li>
                                         <li class="breadcrumb-item active"><a href="/admin/product"> product</a></li>
-                                        <li class="breadcrumb-item active">create</li>
+                                        <li class="breadcrumb-item active">Update</li>
                                     </ol>
                                     <div class="container mt-5  mb-5">
                                         <div class="row">
                                             <div class="col-md-6 col-12 mx-auto">
-                                                <h3>Create a product</h3>
+                                                <h3>Update a product</h3>
                                                 <hr />
-                                                <form:form action="/admin/product/create" method="post"
+                                                <form:form action="/admin/product/update" method="post"
                                                     modelAttribute="newProduct" enctype="multipart/form-data">
+                                                    <div class="mb-3" style="display: none;">
+                                                        <label class="form-label">Id:</label>
+                                                        <form:input type="text" class="form-control" path="id" />
+                                                    </div>
                                                     <div class="row g-3">
                                                         <div class="col">
                                                             <c:set var="nameErr">
@@ -125,19 +132,20 @@
                                                     </div>
 
                                                     <div class="row g-3">
-                                                        <label for="formFile" class="form-label">Avatar Image:</label>
+                                                        <label for="formFile" class="form-label">Product Image:</label>
                                                         <input class="form-control" type="file" id="avatarFile"
                                                             accept=".png, .jpg, .jpeg" name="productImage" />
                                                     </div>
                                                     <span
                                                         style="text-align: center; color: red;">${uploadFileErr}</span>
-                                                    <div class="row g-3 mt-2">
-                                                        <img style="max-height: 250px; display: none;"
-                                                            alt="avatar proview" id="avatarPreview">
-                                                    </div>
+
+                                                    <img class="mt-5" src="/images/product/${newProduct.image}"
+                                                        style="max-height: 250px; display: block;" alt="avatar proview"
+                                                        id="avatarPreview">
+
 
                                                     <button type="submit"
-                                                        class="btn btn-primary mt-4 mb-10">Create</button>
+                                                        class="btn btn-primary mt-4 mb-10">Update</button>
                                                 </form:form>
                                             </div>
 
