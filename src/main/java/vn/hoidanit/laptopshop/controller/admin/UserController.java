@@ -113,7 +113,7 @@ public class UserController {
         User user = new User();
         user.setId(id);
         model.addAttribute("newUser", user);
-        return "/admin/user/delete";
+        return "admin/user/delete";
     }
 
     @PostMapping("/admin/user/delete")

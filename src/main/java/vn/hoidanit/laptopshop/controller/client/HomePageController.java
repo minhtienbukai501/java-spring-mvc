@@ -5,16 +5,21 @@ import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
+
 import vn.hoidanit.laptopshop.domain.DTO.RegisterDTO;
 import vn.hoidanit.laptopshop.service.ProductService;
 import vn.hoidanit.laptopshop.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class HomePageController {
@@ -33,18 +38,28 @@ public class HomePageController {
     public String getMethodName(Model model) {
         List<Product> products = this.productService.getAllProduct();
         model.addAttribute("products", products);
-        return "/client/homepage/show";
+        return "client/homepage/show";
     }
 
     @GetMapping("/register")
     public String handleCreateRegister(Model model) {
 
         model.addAttribute("newRegister", new RegisterDTO());
-        return "/client/auth/register";
+        return "client/auth/register";
     }
 
     @PostMapping("/register")
-    public String handleCreateRegisterPost(Model model, @ModelAttribute("newRegister") RegisterDTO register) {
+    public String handleCreateRegisterPost(Model model, @ModelAttribute("newRegister") @Valid RegisterDTO register,
+            BindingResult productBindingResult) {
+
+        if (productBindingResult.hasErrors()) {
+            // System.out.println("Có lỗi");
+            // List<FieldError> errors = productBindingResult.getFieldErrors();
+            // for (FieldError error : errors) {
+            // System.out.println(error.getField() + " - " + error.getDefaultMessage());
+            // }
+            return "client/auth/register";
+        }
 
         User user = this.userService.convertRegisterToUser(register);
         user.setPassWord(this.passwordEncoder.encode(register.getPassword()));
@@ -54,9 +69,22 @@ public class HomePageController {
         return "redirect:/";
     }
 
-    @GetMapping("/login")
-    public String getLoginPage(Model model) {
+    // @GetMapping("/login")
+    // public String getLoginPage(Model model) {
+    // model.addAttribute("newLogin", new LoginDTO());
+    // return "/client/auth/login";
+    // }
 
-        return "/client/auth/login";
+    // @PostMapping("/login")
+    // public String getLoginPost(Model model) {
+    // // TODO: process POST request
+
+    // return "redirect:/";
+    // }
+
+    @GetMapping("/product")
+    public String getListProduct(Model model) {
+        return "client/product/show";
     }
+
 }

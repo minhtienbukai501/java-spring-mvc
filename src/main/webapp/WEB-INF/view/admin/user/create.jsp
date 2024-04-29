@@ -127,10 +127,10 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row g-3 mt-2">
-                                                        <img style="max-height: 250px; display: none;"
-                                                            alt="avatar proview" id="avatarPreview">
-                                                    </div>
+
+                                                    <img style="max-height: 250px; display: none;" alt="avatar proview"
+                                                        id="avatarPreview">
+
                                                     <button type="submit"
                                                         class="btn btn-primary mt-4 mb-10">Create</button>
                                                 </form:form>

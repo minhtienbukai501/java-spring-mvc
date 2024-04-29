@@ -1,10 +1,20 @@
 package vn.hoidanit.laptopshop.domain.DTO;
 
+import vn.hoidanit.laptopshop.service.validator.RegisterChecked;
+import vn.hoidanit.laptopshop.service.validator.StrongPassword;
+
+@RegisterChecked
 public class RegisterDTO {
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
+    @StrongPassword
     private String password;
+
     private String confirmPassword;
 
     public RegisterDTO(String firstName, String lastName, String email, String password, String confirmPassword) {

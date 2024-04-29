@@ -82,7 +82,7 @@
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb mb-4">
                                                 <li class="breadcrumb-item active"><a href="/">Home</a></li>
-                                                <li class="breadcrumb-item active"><a href="/product/">Product</a></li>
+                                                <li class="breadcrumb-item active"><a href="/">Product</a></li>
                                                 <li class="breadcrumb-item active">Detail</li>
                                             </ol>
                                         </nav>
@@ -153,7 +153,7 @@
                                                     <div class="tab-pane active" id="nav-about" role="tabpanel"
                                                         aria-labelledby="nav-about-tab">
                                                         <p>${product.detailDesc}</p>
-                                                        <div class="px-2">
+                                                        <!-- <div class="px-2">
                                                             <div class="row g-4">
                                                                 <div class="col-6">
                                                                     <div
@@ -203,7 +203,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                     <div class="tab-pane" id="nav-mission" role="tabpanel"
                                                         aria-labelledby="nav-mission-tab">

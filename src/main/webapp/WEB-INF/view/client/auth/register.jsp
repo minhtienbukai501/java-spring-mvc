@@ -20,8 +20,6 @@
                 </head>
 
                 <body>
-
-
                     <section class="vh-100" style="background-color: #eee;">
                         <div class="container h-100">
                             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -35,25 +33,50 @@
 
                                                     <form:form class="mx-1 mx-md-4" action="/register" method="post"
                                                         modelAttribute="newRegister" enctype="multipart/form-data">
+                                                        <c:set var="confirmErr">
+                                                            <form:errors path="confirmPassword"
+                                                                cssClass="invalid-feedback" />
+                                                        </c:set>
 
+                                                        <c:set var="firstNameErr">
+                                                            <form:errors path="firstName" cssClass="invalid-feedback" />
+                                                        </c:set>
+
+                                                        <c:set var="lastNameErr">
+                                                            <form:errors path="lastName" cssClass="invalid-feedback" />
+                                                        </c:set>
+
+                                                        <c:set var="emailErr">
+                                                            <form:errors path="email" cssClass="invalid-feedback" />
+                                                        </c:set>
+
+                                                        <c:set var="passwordErr">
+                                                            <form:errors path="password" cssClass="invalid-feedback" />
+                                                        </c:set>
                                                         <div class="row g-3">
                                                             <div class="col">
 
+
                                                                 <form:input type="text" id="form3Example3c"
-                                                                    class="form-control" placeholder="FirstName "
-                                                                    path="firstName" />
+                                                                    class="form-control ${not empty firstNameErr ? 'is-invalid' : ''}"
+                                                                    placeholder="firstName " path="firstName" />
+                                                                ${firstNameErr}
 
                                                             </div>
                                                             <div class="col">
-                                                                <form:input type="text" class="form-control"
+                                                                <form:input type="text"
+                                                                    class="form-control ${not empty lastNameErr ? 'is-invalid' : ''}"
                                                                     placeholder="LastName" path="lastName" />
+                                                                ${lastNameErr}
                                                             </div>
                                                         </div>
 
                                                         <div class="row mt-4">
                                                             <div class="col">
-                                                                <form:input type="email" class="form-control"
+                                                                <form:input type="email"
+                                                                    class="form-control ${not empty emailErr ? 'is-invalid' : ''}"
                                                                     placeholder="Your email" path="email" />
+                                                                ${emailErr}
                                                             </div>
 
 
@@ -61,20 +84,26 @@
 
                                                         <div class="row mt-4">
                                                             <div class="col">
-                                                                <form:input type="password" class="form-control"
+                                                                <form:input type="password"
+                                                                    class="form-control ${not empty passwordErr ? 'is-invalid' : ''} "
                                                                     placeholder="Password" path="password" />
+                                                                ${passwordErr}
+
                                                             </div>
 
                                                             <div class="col">
-                                                                <form:input type="Password" class="form-control"
+                                                                <form:input type="Password"
+                                                                    class="form-control ${not empty confirmErr ? 'is-invalid' : ''}"
                                                                     placeholder="Confirm Password"
                                                                     path="confirmPassword" />
+                                                                ${confirmErr}
+
                                                             </div>
                                                         </div>
 
 
                                                         <div class="row mt-4 d-flex justify-content-center">
-                                                            <a href="">if you have account? Go to sign in</a>
+                                                            <a href="/login">if you have account? Go to sign in</a>
                                                         </div>
 
 

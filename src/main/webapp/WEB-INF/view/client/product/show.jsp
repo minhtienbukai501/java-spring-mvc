@@ -34,7 +34,18 @@
 
                     <!-- Template Stylesheet -->
                     <link href="client/css/style.css" rel="stylesheet">
-
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                    <script>
+                        $(function () {
+                            var url = window.location.pathname,
+                                urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");
+                            $('.nav-link').each(function () {
+                                if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
+                                    $(this).addClass('active');
+                                }
+                            });
+                        });
+                    </script>
                 </head>
 
                 <body>
@@ -76,7 +87,7 @@
 
                     <jsp:include page="../layout/banner.jsp" />
 
-                    <jsp:include page="../layout/feature.jsp" />
+
 
                     <!-- Fruits Shop Start-->
                     <div class="container-fluid fruite py-5">
@@ -84,7 +95,7 @@
                             <div class="tab-class text-center">
                                 <div class="row g-4">
                                     <div class="col-lg-4 text-start">
-                                        <h1>The most product</h1>
+                                        <h1>All product</h1>
                                     </div>
                                     <div class="col-lg-8 text-end">
                                         <ul class="nav nav-pills d-inline-flex text-center mb-5">

@@ -54,7 +54,7 @@ public class User {
     @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
 
-    @NotEmpty(message = "Password cannot be empty")
+    @Size(min = 5, message = "Minimum 5 characters")
     private String passWord;
 
     @NotEmpty(message = "Name cannot be empty")
