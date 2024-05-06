@@ -56,9 +56,9 @@ public class UserController {
             return "/admin/user/create";
         }
         String fileAvatar = this.uploadService.handleSaveUploadFile(file, "avatar");
-        String hashPassword = this.passwordEncoder.encode(leTien.getPassWord());
+        String hashPassword = this.passwordEncoder.encode(leTien.getPassword());
         leTien.setAvatar(fileAvatar);
-        leTien.setPassWord(hashPassword);
+        leTien.setPassword(hashPassword);
         leTien.setRole(this.userService.getRoleByName(leTien.getRole().getName()));
         this.userService.handleSaveUser(leTien);
         return "redirect:/admin/user";
@@ -121,4 +121,5 @@ public class UserController {
         this.userService.deleteUserById(user.getId());
         return "redirect:/admin/user";
     }
+
 }

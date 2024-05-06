@@ -362,7 +362,9 @@
                                                 <h4>${product.name}</h4>
                                                 <p>${product.shortDesc}</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold">${product.price}</p>
+                                                    <p class="text-dark fs-5 fw-bold">
+                                                        <fmt:formatNumber type="number" value="${product.price}" /> VND
+                                                    </p>
                                                     <a href="#"
                                                         class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
                                                             class="fa fa-shopping-bag me-2 text-primary"></i> Add to

@@ -19,7 +19,11 @@ import vn.hoidanit.laptopshop.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class HomePageController {
@@ -38,6 +42,7 @@ public class HomePageController {
     public String getMethodName(Model model) {
         List<Product> products = this.productService.getAllProduct();
         model.addAttribute("products", products);
+
         return "client/homepage/show";
     }
 
@@ -62,29 +67,41 @@ public class HomePageController {
         }
 
         User user = this.userService.convertRegisterToUser(register);
-        user.setPassWord(this.passwordEncoder.encode(register.getPassword()));
+        user.setPassword(this.passwordEncoder.encode(register.getPassword()));
         user.setRole(this.userService.getRoleByName("USER"));
 
         this.userService.handleSaveUser(user);
         return "redirect:/";
     }
 
-    // @GetMapping("/login")
-    // public String getLoginPage(Model model) {
-    // model.addAttribute("newLogin", new LoginDTO());
-    // return "/client/auth/login";
-    // }
+    @GetMapping("/login")
+    public String getLoginPage(Model model) {
 
-    // @PostMapping("/login")
-    // public String getLoginPost(Model model) {
-    // // TODO: process POST request
+        return "client/auth/login";
+    }
 
-    // return "redirect:/";
-    // }
+    @PostMapping("/login")
+    public String getLoginPost(Model model) {
+        // TODO: process POST request
+
+        return "redirect:/";
+    }
 
     @GetMapping("/product")
     public String getListProduct(Model model) {
         return "client/product/show";
+    }
+
+    @GetMapping("/acces-deny")
+    public String getErrPage(Model model) {
+        return "client/auth/deny";
+    }
+
+    @PostMapping("/keywords")
+    public String findProductByKeyWords(Model model) {
+        // TODO: process POST request
+
+        return "redirect:/";
     }
 
 }

@@ -49,30 +49,37 @@
                     <jsp:include page="../layout/header.jsp" />
 
 
+                    <form action="/keywords" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <!-- Modal Search Start -->
+                        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
 
-                    <!-- Modal Search Start -->
-                    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-fullscreen">
-                            <div class="modal-content rounded-0">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body d-flex align-items-center">
-                                    <div class="input-group w-75 mx-auto d-flex">
-                                        <input type="search" class="form-control p-3" placeholder="keywords"
-                                            aria-describedby="search-icon-1">
-                                        <span id="search-icon-1" class="input-group-text p-3"><i
-                                                class="fa fa-search"></i></span>
+                            <div class="modal-dialog modal-fullscreen">
+                                <div class="modal-content rounded-0">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body d-flex align-items-center">
+
+                                        <div class="input-group w-75 mx-auto d-flex">
+
+                                            <input type="search" class="form-control p-3" placeholder="keywords"
+                                                aria-describedby="search-icon-1">
+                                            <button type="submit" id="search-icon-1" class="input-group-text p-3"><i
+                                                    class="fa fa-search"></i></button>
+
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Modal Search End -->
 
+                        </div>
+                        <!-- Modal Search End -->
+                    </form>
 
                     <jsp:include page="../layout/banner.jsp" />
 
@@ -125,11 +132,17 @@
                                                                                 <fmt:formatNumber type="number"
                                                                                     value="${product.price}" /> vnd
                                                                             </p>
-                                                                            <a href="#"
-                                                                                class="mx-auto  border border-secondary rounded-pill px-3 text-primary"><i
-                                                                                    class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                                Add to cart</a>
-
+                                                                            <form
+                                                                                action="/add-product-to-card/${product.id}"
+                                                                                method="post">
+                                                                                <input type="hidden"
+                                                                                    name="${_csrf.parameterName}"
+                                                                                    value="${_csrf.token}" />
+                                                                                <button type="submit"
+                                                                                    class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                                                        class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                                                    Add to cart</button>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
 
@@ -190,10 +203,13 @@
                                                                     class="d-flex justify-content-between flex-lg-wrap">
                                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg
                                                                     </p>
-                                                                    <a href="#"
-                                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                        Add to cart</a>
+                                                                    <form action="/add-product-to-cart/${product.id}"
+                                                                        method="post">
+                                                                        <button
+                                                                            class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                                                class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                                            Add to cart</button>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>

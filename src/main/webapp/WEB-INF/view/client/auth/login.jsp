@@ -28,34 +28,32 @@
                                 <h1 style="text-align: center;">Login</h1>
                             </div>
 
-                            <form:form modelAttribute="newLogin" action="/login" method="post">
+                            <form:form action="/login" method="post">
                                 <!-- Email input -->
-                                <c:set var="errEmail">
-                                    <form:errors path="email" cssClass="invalid-feedback" />
-                                </c:set>
-                                <c:set var="passwordErr">
-                                    <form:errors path="password" cssClass="invalid-feedback" />
-                                </c:set>
+                                <c:if test="${param.error != null}">
+                                    <div class="my-2" style="color: red;">Invalid email or password.</div>
+                                </c:if>
+
+                                <c:if test="${param.logout != null}">
+                                    <div class="my-2" style="color: rgb(0, 255, 55);">Logout suscess</div>
+                                </c:if>
                                 <div data-mdb-input-init class="form-outline mb-4 mt-4">
-                                    <label class="form-label" for="form2Example1">Email address:</label>
-                                    <form:input type="email" id="form2Example1"
-                                        class="form-control ${not empty errEmail ? 'is-invalid' : ''}" path="email" />
-                                    ${errEmail}
+                                    <label class="form-label" for="username">Email address:</label>
+                                    <input type="email" id="username" name="username" class="form-control" />
                                 </div>
 
                                 <!-- Password input -->
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="form2Example2">Password:</label>
-                                    <form:input type="password" id="form2Example2"
-                                        class="form-control ${not empty passwordErr ? 'is-invalid' : ''}"
-                                        path="password" />
-                                    ${passwordErr}
+                                    <label class="form-label" for="password">Password:</label>
+                                    <input type="password" id="password" name="password" class="form-control " />
+
                                 </div>
 
+                                <div>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                </div>
                                 <!-- 2 column grid layout for inline styling -->
                                 <div class="row mb-4">
-
-
                                     <div class="col">
                                         <!-- Simple link -->
                                         <a href="#!">Forgot password?</a>

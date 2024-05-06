@@ -49,7 +49,7 @@ public class UserService {
         User user = new User();
         user.setFullName(registerDTO.getFirstName() + " " + registerDTO.getLastName());
         user.setEmail(registerDTO.getEmail());
-        user.setPassWord(registerDTO.getPassword());
+        user.setPassword(registerDTO.getPassword());
 
         return user;
     }

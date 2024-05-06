@@ -30,7 +30,7 @@ public class LoginValidator implements ConstraintValidator<LoginChecked, LoginDT
                     .addPropertyNode("email").addConstraintViolation().disableDefaultConstraintViolation();
             valid = false;
         } else {
-            if (!this.passwordEncoder.matches(login.getPassword(), user.getPassWord())) {
+            if (!this.passwordEncoder.matches(login.getPassword(), user.getPassword())) {
 
                 context.buildConstraintViolationWithTemplate("password is invalid")
                         .addPropertyNode("password").addConstraintViolation().disableDefaultConstraintViolation();
