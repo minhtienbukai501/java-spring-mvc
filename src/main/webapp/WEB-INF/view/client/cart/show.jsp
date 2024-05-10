@@ -172,9 +172,11 @@
                                                 <div class="d-flex justify-content-between mb-4">
                                                     <h5 class="mb-0 me-4" data-cart-total-price="${totalPrice}">
                                                         Subtotal:
-                                                        <fmt:formatNumber type="number" value="${totalPrice}" /> VND
+
                                                     </h5>
-                                                    <p class="mb-0"></p>
+                                                    <p class="mb-0">
+                                                        <fmt:formatNumber type="number" value="${totalPrice}" /> VND
+                                                    </p>
                                                 </div>
                                                 <div class="d-flex justify-content-between">
                                                     <h5 class="mb-0 me-4">Shipping</h5>
@@ -190,7 +192,7 @@
                                                 <h5 class="mb-0 ps-4 me-4">Total</h5>
                                                 <p class="mb-0 pe-4">
                                                     <fmt:formatNumber type="number"
-                                                        value="${totalPrice + totalPrice * 0.01}" />
+                                                        value="${totalPrice + totalPrice * 0.01}" /> VND
                                                 </p>
                                             </div>
                                             <button

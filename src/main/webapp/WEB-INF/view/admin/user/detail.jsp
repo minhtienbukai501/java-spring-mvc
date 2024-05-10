@@ -48,7 +48,11 @@
                                                     <li class="list-group-item">Phone Number: ${user.phone} </li>
                                                     <li class="list-group-item">Role: ${user.role.name}</li>
                                                     <li class="list-group-item">Address: ${user.address}</li>
-                                                    <li class="list-group-item">Avatar:</li>
+
+                                                    <li class="list-group-item">Avatar:
+                                                        <img style="max-height: 80px;"
+                                                            src="/images/avatar/${user.avatar}" alt="avatar">
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <a href="/admin/user" type="button" class="btn btn-success mt-3">Back</a>

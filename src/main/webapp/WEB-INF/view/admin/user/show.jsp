@@ -81,7 +81,7 @@
                                     </div>
                                     <div>
                                         <c:if test="${users.size() == 0}">
-                                            <p style="text-align: center;color:#ccc">Không có người dùng nào</p>
+                                            <p style="text-align: center;color:#ccc">Not found any user!</p>
                                         </c:if>
                                     </div>
                                 </div>

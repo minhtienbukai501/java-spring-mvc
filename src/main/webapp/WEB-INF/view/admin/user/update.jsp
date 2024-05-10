@@ -84,10 +84,11 @@
                                                             accept=".png, .jpg, .jpeg" name="nameFileUpdate" />
                                                     </div>
                                                 </div>
-                                                <div class="row g-3 mt-2">
+                                                <div>
                                                     <img style="max-height: 250px; display: none;" alt="avatar proview"
                                                         id="avatarPreview">
                                                 </div>
+
 
                                                 <div class="mt-2">
                                                     <a href="/admin/user" type="button" class="btn btn-success">Back</a>

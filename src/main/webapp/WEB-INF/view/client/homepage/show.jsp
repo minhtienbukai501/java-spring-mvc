@@ -120,17 +120,18 @@
                                                                         <img src="images/product/${product.image}"
                                                                             class="img-fluid w-100 rounded-top" alt="">
                                                                     </div>
-                                                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                                    <div class="text-truncate text-white bg-secondary px-3 py-1 rounded position-absolute"
                                                                         style="top: 10px; left: 10px;">${product.name}
                                                                     </div>
                                                                     <div class="p-4  border-top-0 rounded-bottom">
-                                                                        <h4>${product.name}</h4>
-                                                                        <p>${product.shortDesc}</p>
+                                                                        <h4 class="text-truncate">${product.name}</h4>
+                                                                        <p class="text-truncate">${product.shortDesc}
+                                                                        </p>
                                                                         <div class="flex-lg-wrap">
                                                                             <p style="font-size: 15px; text-align: center; display: block;"
                                                                                 class="text-dark fw-bold mb-3">
                                                                                 <fmt:formatNumber type="number"
-                                                                                    value="${product.price}" /> vnd
+                                                                                    value="${product.price}" /> Vnd
                                                                             </p>
                                                                             <form
                                                                                 action="/add-product-to-card/${product.id}"
