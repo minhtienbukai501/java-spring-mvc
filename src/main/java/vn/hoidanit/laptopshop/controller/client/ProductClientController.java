@@ -18,6 +18,8 @@ import vn.hoidanit.laptopshop.service.ProductService;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProductClientController {
@@ -47,6 +49,16 @@ public class ProductClientController {
         return "redirect:/";
     }
 
+    @PostMapping("/add-product-to-card-next/{id}")
+    public String postHandleAddtoCart(Model model, @PathVariable long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        long ProductId = id;
+        String email = session.getAttribute("email").toString();
+        this.productService.handleAddProductToCart(email, ProductId, session);
+
+        return "redirect:/product";
+    }
+
     @GetMapping("/cart")
     public String showCartPage(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
@@ -66,6 +78,23 @@ public class ProductClientController {
         model.addAttribute("totalPrice", totalPrice);
 
         return "client/cart/show";
+    }
+
+    @PostMapping("/cart/{id}")
+    public String postHandleDeleteProductFromCart(@PathVariable Long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        long cartDetailId = id;
+        this.productService.handleRemoveCartDetail(cartDetailId, session);
+
+        return "redirect:/cart";
+    }
+
+    @PostMapping("/product")
+    public String postHandleSearchProduct(Model model, @RequestParam String search) {
+        List<Product> listProduct = this.productService.findAllProductWithName(search);
+
+        model.addAttribute("products", listProduct);
+        return "client/product/show";
     }
 
 }

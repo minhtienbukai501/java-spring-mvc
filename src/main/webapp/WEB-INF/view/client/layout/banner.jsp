@@ -11,13 +11,17 @@
                             <h1 class="mb-5 display-3 text-primary">Laptop Văn Phòng &
                                 LapTopGamming
                             </h1>
-                            <div class="position-relative mx-auto">
-                                <input class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill"
-                                    type="number" placeholder="Search">
-                                <button type="submit"
+                            <form id="searchForm" action="/product" method="post">
+                                <input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                <div class="position-relative mx-auto">
+                                <input id="searchInput" name="wordSearch" class="border-2 border-secondary w-75 py-3 px-4 rounded-pill"
+                                    type="text" placeholder="Search"/>
+                                
+                                    <button type="submit"
                                     class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100"
-                                    style="top: 0; right: 25%;">Submit Now</button>
-                            </div>
+                                    style="top: 0; right: 25%;">Search</button>   
+                                </div>
+                             </form>
                         </div>
                         <div class="col-md-12 col-lg-5">
                             <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
@@ -48,3 +52,20 @@
                 </div>
             </div>
             <!-- Hero End -->
+<script>
+    const searchId = document.querySelector('#searchForm');
+    const inputSearch = document.querySelector('#searchInput');
+    const domButton = inputSearch.querySelector('button');
+    console.log(domButton);
+    if(inputSearch){
+        inputSearch.addEventListener('change', function(){
+            const idForm = document.querySelector('#searchForm');
+            const keyword = this.value;
+            console.log('keyword: ' + keyword);
+            const url = '/product?search='+ keyword;
+            
+            idForm.setAttribute('action', url);
+        })
+    }
+    
+</script>

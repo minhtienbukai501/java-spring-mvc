@@ -1,5 +1,8 @@
 package vn.hoidanit.laptopshop.service;
 
+import org.springframework.boot.autoconfigure.jms.JmsProperties.Listener.Session;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +15,7 @@ import vn.hoidanit.laptopshop.repository.CartDetailRepository;
 import vn.hoidanit.laptopshop.repository.CartRepository;
 import vn.hoidanit.laptopshop.repository.ProductRepository;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -26,6 +30,14 @@ public class ProductService {
         this.cartRepository = cartRepository;
         this.cartDetailRepository = cartDetailRepository;
         this.userService = userService;
+    }
+
+    public Page<Product> getProductAll(Pageable pageable) {
+        return this.productRepository.findAll(pageable);
+    }
+
+    public List<Product> findAllProductWithName(String name) {
+        return this.productRepository.findByName(name);
     }
 
     public Product insertNewProduct(Product product) {
@@ -76,5 +88,23 @@ public class ProductService {
             }
         }
 
+    }
+
+    public void handleRemoveCartDetail(Long id, HttpSession session) {
+        Optional<CartDetail> carDetailOptional = this.cartDetailRepository.findById(id);
+        if (carDetailOptional.isPresent()) {
+            CartDetail cartDetail = carDetailOptional.get();
+            Cart currentCart = cartDetail.getCart();
+            this.cartDetailRepository.deleteById(id);
+            if (currentCart.getSum() > 1) {
+                int s = currentCart.getSum() - 1;
+                currentCart.setSum(s);
+                session.setAttribute("sum", s);
+                this.cartRepository.save(currentCart);
+            } else {
+                this.cartRepository.deleteById(currentCart.getId());
+                session.setAttribute("sum", 0);
+            }
+        }
     }
 }

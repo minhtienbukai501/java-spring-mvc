@@ -84,6 +84,26 @@
                                             <p style="text-align: center;color:#ccc">Không có người dùng nào</p>
                                         </c:if>
                                     </div>
+                                    <div class="row ">
+                                        <nav aria-label="Page navigation example ">
+                                            <ul class="pagination justify-content-center ${totalPages eq 0 ? 'd-none' : ''}" >
+                                                <li class="page-item">
+                                                    <a class="${ currentPage eq 1 ? 'page-link disabled' : 'page-link'}" href="/admin/product?page=${currentPage -1}">Previous</a>
+                                                </li>
+                                                <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
+                                                    <li class="page-item">
+                                                        <a class="${(loop.index + 1) eq currentPage ? 'page-link active' : 'page-link'} " href="/admin/product?page=${loop.index+1}">
+                                                             ${loop.index+1}
+                                                        </a>
+                                                    </li>
+                                                </c:forEach>
+        
+                                                <li class="page-item">
+                                                    <a class="${ currentPage eq totalPages ? 'page-link disabled' : 'page-link'}" href="/admin/product?page=${currentPage + 1}">Next</a>
+                                                </li>
+                                            </ul>
+                                          </nav>
+                                    </div>
                                 </div>
                             </div>
                         </main>

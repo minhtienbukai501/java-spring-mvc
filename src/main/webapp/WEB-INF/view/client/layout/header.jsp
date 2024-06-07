@@ -23,7 +23,7 @@
                 <div class="container px-0">
                     <nav class="navbar navbar-light bg-white navbar-expand-xl">
                         <a href="/" class="navbar-brand">
-                            <h1 class="text-primary display-6">LaptopShop</h1>
+                            <h1 class="text-primary display-6">Laptop </h1>
                         </a>
                         <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarCollapse">
@@ -38,7 +38,7 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                     <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                         <a href="cart.html" class="dropdown-item">Cart</a>
-                                        <a href="chackout.html" class="dropdown-item">Chackout</a>
+                                        <a href="chackout.html" class="dropdown-item">Checkout</a>
 
                                     </div>
                                 </div>

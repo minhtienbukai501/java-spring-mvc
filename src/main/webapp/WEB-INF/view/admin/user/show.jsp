@@ -84,6 +84,17 @@
                                             <p style="text-align: center;color:#ccc">Not found any user!</p>
                                         </c:if>
                                     </div>
+                                    <div class="row ">
+                                        <nav aria-label="Page navigation example ">
+                                            <ul class="pagination justify-content-center">
+                                              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                              <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                            </ul>
+                                          </nav>
+                                    </div>
                                 </div>
                             </div>
                         </main>

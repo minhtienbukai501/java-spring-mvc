@@ -1,14 +1,19 @@
 package vn.hoidanit.laptopshop.controller.client;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
@@ -22,6 +27,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -40,7 +47,9 @@ public class HomePageController {
 
     @GetMapping("/")
     public String getMethodName(Model model) {
-        List<Product> products = this.productService.getAllProduct();
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Product> pageableArr = this.productService.getProductAll(pageable);
+        List<Product> products = pageableArr.getContent();
         model.addAttribute("products", products);
 
         return "client/homepage/show";
@@ -88,7 +97,26 @@ public class HomePageController {
     }
 
     @GetMapping("/product")
-    public String getListProduct(Model model) {
+    public String getListProduct(Model model,
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestParam(value = "search", required = false) Integer search) {
+        if (page == null || page < 1) {
+            page = 1;
+        }
+
+        System.out.println(search);
+        Pageable pageable = PageRequest.of(page - 1, 10);
+        Page<Product> pageProduct = this.productService.getProductAll(pageable);
+
+        if (page > pageProduct.getTotalPages()) {
+            page = 1;
+            pageable = PageRequest.of(page - 1, 10);
+            pageProduct = this.productService.getProductAll(pageable);
+        }
+        List<Product> products = pageProduct.getContent();
+        model.addAttribute("products", products);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", pageProduct.getTotalPages());
         return "client/product/show";
     }
 

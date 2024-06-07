@@ -7,7 +7,7 @@
 
                 <head>
                     <meta charset="utf-8">
-                    <title>cart</title>
+                    <title>cart detail</title>
                     <meta content="width=device-width, initial-scale=1.0" name="viewport">
                     <meta content="" name="keywords">
                     <meta content="" name="description">
@@ -55,16 +55,19 @@
                     <!-- Single Page Header start -->
                     <div class="container-fluid page-header py-5">
                         <h1 class="text-center text-white display-6">Cart</h1>
-                        <ol class="breadcrumb justify-content-center mb-0">
-                            <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item active text-white">Cart</li>
-                        </ol>
+                        
                     </div>
                     <!-- Single Page Header End -->
 
 
                     <!-- Cart Page Start -->
                     <div class="container-fluid py-5">
+                        
+                            <ol class="breadcrumb justify-content-center mb-0">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active">Cart</li>
+                            </ol>
+                    
                         <div class="container py-5">
                             <div class="table-responsive">
                                 <table class="table">
@@ -135,9 +138,12 @@
                                                         </p>
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-md rounded-circle bg-light border mt-4">
-                                                            <i class="fa fa-times text-danger"></i>
-                                                        </button>
+                                                        <form action="/cart/${cart.id}" method="post">
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                                            <button type="submit" class="btn btn-md rounded-circle bg-light border mt-4">
+                                                                <i class="fa fa-times text-danger"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
 
                                                 </tr>
@@ -170,11 +176,11 @@
                                                 <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span>
                                                 </h1>
                                                 <div class="d-flex justify-content-between mb-4">
-                                                    <h5 class="mb-0 me-4" data-cart-total-price="${totalPrice}">
+                                                    <h5   class="mb-0 me-4" data-cart-total-price="${totalPrice}">
                                                         Subtotal:
 
                                                     </h5>
-                                                    <p class="mb-0">
+                                                    <p class="mb-0" data-cart-total-price=${totalPrice}>
                                                         <fmt:formatNumber type="number" value="${totalPrice}" /> VND
                                                     </p>
                                                 </div>
@@ -182,7 +188,7 @@
                                                     <h5 class="mb-0 me-4">Shipping</h5>
                                                     <div class="">
                                                         <p class="mb-0">Ship: </p>
-                                                        <p class="mb-0">VAT: 5%</p>
+                                                        <p class="mb-0">VAT: 1%</p>
                                                     </div>
                                                 </div>
                                                 <p class="mb-0 text-end"></p>
@@ -190,14 +196,15 @@
                                             <div
                                                 class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                                                 <h5 class="mb-0 ps-4 me-4">Total</h5>
-                                                <p class="mb-0 pe-4">
-                                                    <fmt:formatNumber type="number"
+                                                <p class="mb-0 pe-4" data-cart-total-price=${totalPrice}> 
+                                                    <fmt:formatNumber type="number" 
                                                         value="${totalPrice + totalPrice * 0.01}" /> VND
                                                 </p>
                                             </div>
                                             <button
                                                 class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
-                                                type="button">Proceed Checkout</button>
+                                                type="button">Proceed Checkout
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
